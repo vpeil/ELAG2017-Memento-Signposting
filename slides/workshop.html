@@ -139,9 +139,8 @@
   <body>
     <textarea id="source">
 class: center middle
-![LibreCat](./img/librecat.png "Logo LibreCat")
-## Memento &amp; Signposting
-### Automating the scholarly web
+# Memento &amp; Signposting
+## Automating the scholarly web
 
 #### Kolloquium Wisseninfrastruktur, 12. Mai 2017
 
@@ -233,37 +232,71 @@ class:middle
 ![Signposting](./img/signposting_graph.png "Signposting Graph")
 
 ---
-class: middle center
-### Author pattern
-![Author-DOI](./img/author_doi.png)
+class: middle
+
+```terminal
+$ curl -I "https://search.datacite.org/works/10.6084/M9.FIGSHARE.3501629"
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Headers: Content-Type,Accept,Accept-Encoding,Origin,
+User-Agent,Cache-Control,Keep-Alive
+Access-Control-Allow-Origin: *
+Content-Length: 18238
+Content-Type: text/html;charset=utf-8
+Date: Fri, 12 May 2017 05:09:16 GMT
+Link: <https://doi.org/10.6084/M9.FIGSHARE.3501629> ; rel="identifier",
+<https://doi.org/10.6084/M9.FIGSHARE.3501629> ; rel="describedby" ;
+type="application/vnd.datacite.datacite+xml",
+<https://doi.org/10.6084/M9.FIGSHARE.3501629> ;
+rel="describedby" ; type="application/vnd.citationstyles.csl+json",
+<https://doi.org/10.6084/M9.FIGSHARE.3501629> ; rel="describedby" ;
+type="application/x-bibtex"
+Server: openresty/1.11.2.2
+Status: 200 OK
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Powered-By: Phusion Passenger 5.1.4
+X-XSS-Protection: 1; mode=block
+Connection: keep-alive```
 
 ---
 class: middle
 
 ```terminal
-$ curl -I http://....
+Link: <https://doi.org/10.6084/M9.FIGSHARE.3501629> ; rel="identifier",
 
-Link: <http://orcid.org/0000-0002-0715-6126>
-      ; rel="author",
-      <http://orcid.org/0000-0003-3749-8116>
-      ; rel="author"
+<https://doi.org/10.6084/M9.FIGSHARE.3501629> ; rel="describedby" ;
+type="application/vnd.datacite.datacite+xml",
+
+<https://doi.org/10.6084/M9.FIGSHARE.3501629> ;
+rel="describedby" ; type="application/vnd.citationstyles.csl+json",
+
+<https://doi.org/10.6084/M9.FIGSHARE.3501629> ; rel="describedby" ;
+type="application/x-bibtex"
 ```
 
 ---
 class: middle
-### Bibliographic metadata pattern
-[]
 
----
-class: middle
 ```terminal
-$ curl -I http://....
+$ curl -I "https://doi.pangaea.de/10.1594/PANGAEA.867908"
+...
+Link: <https://doi.org/10.1594/PANGAEA.867908>; rel="identifier"
 
-Link: <http://orcid.org/0000-0002-0715-6126>
-      ; rel="author",
-      <http://orcid.org/0000-0003-3749-8116>
-      ; rel="author"
+<https://doi.pangaea.de/10.1594/PANGAEA.867908?format=citation_ris>;
+rel="describedby"; type="application/x-research-info-systems",
+
+<https://doi.pangaea.de/10.1594/PANGAEA.867908?format=citation_bibtex>;
+rel="describedby"; type="application/x-bibtex",
+
+<https://doi.pangaea.de/10.1594/PANGAEA.867908?format=zip>; rel="item";
+type="application/zip",
+
+<http://orcid.org/0000-0003-1291-8524>; rel="author"
+...
 ```
+
+For more examples visit http://signposting.org/adopters/
 
 ---
 class: middle
@@ -278,6 +311,10 @@ class: middle
 ## Memento
 
 ![Memento](./img/memento.png "Memento")
+
+---
+class: middle
+# Memento Live Demo
 
 ---
 class: middle
@@ -296,7 +333,7 @@ class: middle
 class: middle
 # THANK YOU!
 
-nsteenla [at] gent.be
+<!--nsteenla [at] gent.be -->
 
 vitali.peil [at] uni-bielefeld.de
 
