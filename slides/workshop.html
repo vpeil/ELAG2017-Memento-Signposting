@@ -142,17 +142,9 @@ class: center middle
 # Memento &amp; Signposting
 ## Automating the scholarly web
 
-#### Kolloquium Wisseninfrastruktur, 12. Mai 2017
+#### ELAG 2017, 6-9 June 2017, Athens, Greece
 
-<!-- (ELAG 2017, 6-9 June 2017, Athens, Greece) -->
-
-<!--
-class: center middle
-## About Us
-### Nicolas Steenlant, Gent University Library, Belgium
-### Vitali Peil, Bielefeld University Library, Germany
-
--->
+### Nicolas Steenlant, Vitali Peil
 
 ---
 class: middle
@@ -160,9 +152,15 @@ class: middle
 
 * Introduction
 
+* Memento
+
 * Signposting
 
-* Memento
+---
+class: center middle
+## About Us
+### Nicolas Steenlant, Gent University Library, Belgium
+### Vitali Peil, Bielefeld University Library, Germany
 
 ---
 class: middle
@@ -172,7 +170,7 @@ class: middle
 
 * XML-RPC / SOAP around 2000
 
-* Roy Fielding's RESTful thesis 2000
+* Roy Fielding's REST thesis 2000
 
 * OAI-ORE 2006
 
@@ -211,6 +209,59 @@ class: middle
 ---
 class: middle
 # How to provide more web-ish services?
+
+---
+class: middle
+# Memento
+
+![Timetravel log](./img/timetravel_logo.png)
+
+---
+class: middle
+## What's Memento?
+
+* The web consists of highly dynamic resources.
+
+* The web contains versioned.
+
+* There's the internet archive https://archive.org/web/
+
+---
+class: middle
+
+## Exercise
+
+### Open the chrome browser! Have a look a your favourite sites with the Memento Plugin!
+
+
+---
+class: middle
+## How does Memento work?
+
+![Memento](./img/memento.png "Memento")
+
+---
+class: middle
+# Let's create our own Memento-aware web service!
+
+---
+class: middle
+## We need some data first.
+
+The `share` directory contains some YAML files. Read the catmandu documentation and load some data into a MongoDB.
+
+---
+class: middle
+
+```terminal
+$ catmandu import YAML to MongoDB --database_name "elag" < share/data.yml
+$ catmandu import YAML to MongoDB --database_name "elag" < share/versions.yml
+```
+
+To check:
+```terminal
+$ catmandu export MongoDB --database_name "elag" to YAML
+```
 
 ---
 class: center middle
@@ -304,20 +355,6 @@ class: middle
 
 ---
 class: middle
-# Memento
-
----
-class: middle
-## Memento
-
-![Memento](./img/memento.png "Memento")
-
----
-class: middle
-# Memento Live Demo
-
----
-class: middle
 ## Follow Up (maybe for another talk)
 
 ### Robust Links
@@ -333,7 +370,7 @@ class: middle
 class: middle
 # THANK YOU!
 
-<!--nsteenla [at] gent.be -->
+nicolas.steenlant [at] ugent.be
 
 vitali.peil [at] uni-bielefeld.de
 
