@@ -163,6 +163,86 @@ class: center middle
 ### Vitali Peil, Bielefeld University Library, Germany
 
 ---
+class: center middle
+## LibreCat
+
+... is an open collaboration of the three university libraries of **Bielefeld**, **Gent** and **Lund**
+
+... joined by developers from other institutions
+
+... aim: provide tools for digital libraries: **Catmandu**
+
+---
+class: middle
+# Brief overview of Catmandu
+
+---
+class: middle
+## Libraries collect data ...
+
+  * books
+  * journals
+  * articles
+  * maps
+  * manuscripts
+  * sheets of music
+  * ...
+
+---
+class: middle
+## Libraries create metadata ...
+  * bibliographic descriptions
+  * holding informations
+  * references
+  * patron data
+  * ...
+
+---
+class: middle center
+## Metadata
+![Katalog](./img/code4lib.png "Katalog")
+
+---
+class: middle
+## Metadata
+
+... catalogued in library specific formats (MARC, MAB2, PICA, ...)
+
+... provided via library specific APIs (OAI, SRU, Z39.50, ...)
+
+... used in diverse systems (OPACs, discovery systems, institutional repositories, link resolvers, ...)
+
+---
+class: center middle
+## Demand
+
+... for a library specific metadata toolkit
+
+---
+class: middle
+## Catmandu
+
+... provides an open source set of programming components to build up digital libraries and research services
+
+... supports "Extract, Transform, Load" (ETL) processes
+
+---
+class: middle
+## Catmandu - core concepts
+
+* **Items** are the basic unit of data processing in Catmandu. Items may be read, stored, and accessed in many forms.
+
+* **Importers** are Catmandu packages to read items into an application. One can also import from remote sources for instance via Atom and OAI-PMH endpoints.
+
+* **Fixes** transforms items, massage the data into any format you like.
+
+* **Stores** are databases and search engines to store/index your data.
+
+* **Exporters** are Catmandu packages to export items from an application.
+
+* **Iterables** - Every stream of data, if it comes from Iterators, Fixes or Stores, is an iterator. With Iterators the memory consumption of your program is low: you can process Gigabytes, Terabytes of input data without ever running out of memory.
+
+---
 class: middle
 ## A short history of the scholarly web
 
@@ -227,12 +307,17 @@ class: middle
 * There's the internet archive https://archive.org/web/
 
 ---
+
+---
+class: middle
+# Let's explore our VirtualBox!
+
+---
 class: middle
 
 ## Exercise
 
 ### Open the chrome browser! Have a look a your favourite sites with the Memento Plugin!
-
 
 ---
 class: middle
@@ -262,6 +347,10 @@ To check:
 ```terminal
 $ catmandu export MongoDB --database_name "elag" to YAML
 ```
+
+---
+class: middle
+
 
 ---
 class: center middle
