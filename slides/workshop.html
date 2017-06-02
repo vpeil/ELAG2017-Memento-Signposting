@@ -265,10 +265,6 @@ class: middle
 
 ---
 class: middle
-# Repository-centric vs. resource-centric
-
----
-class: middle
 # ONE protocol to rule them all!
 
 ## http://...
@@ -287,11 +283,23 @@ class: middle
 
 * media types
 
-* content negotiation:
+* content negotiation
 
 ---
 class: middle
 # How to provide more web-ish services?
+
+* Resource-centric vs. repository-centric
+
+* Older efforts used HTTP merely as a transport
+
+---
+class: middle
+# What about Linked Data and RDF?
+
+* both approaches aim at *machine readable* resources
+
+* *course* grained and easy to implement and scale vs. *fine* grained
 
 ---
 class: middle
@@ -303,13 +311,47 @@ class: middle
 class: middle
 ## What's Memento?
 
-* The web consists of highly dynamic resources.
+* The web consists of highly dynamic resources
 
-* The web contains versioned.
+* Older versions are still available in many cases
+
+* Many are hidden in the *dark web*
 
 * There's the internet archive https://archive.org/web/
 
 ---
+class: middle
+## What's Memento?
+
+Memento adds *date* negotiation and a way to discover older versions
+
+```terminal
+curl -I \
+-H "Accept-Datetime: Sat, 16 Jun 2012 00:00:00 GMT" \
+http://timetravel.mementoweb.org/timegate/http://www.ietf.org/
+```
+
+```terminal
+HTTP/1.1 302 Found
+Date: Fri, 31 Oct 2014 20:44:44 GMT
+Content-Type: text/plain; charset=iso-8859-1
+Content-Length: 0
+Location: http://web.archive.org/web/20120616161314/http://www.ietf.org/
+Vary: Accept-Datetime
+Link: <http://www.ietf.org/> ;rel="original" ,
+ <http://timetravel.mementoweb.org/timemap/link/1/http://www.ietf.org/> 
+    ; rel="timemap"
+    ; type="application/link-format",
+ <http://web.archive.org/web/20120616161314/http://www.ietf.org/> 
+    ; rel="memento"
+    ; datetime="Sat, 16 Jun 2012 16:13:14 GMT",
+ <http://web.archive.org/web/19961106114954/http://www.ietf.org/> 
+    ; rel="memento first"
+    ; datetime="Wed, 06 Nov 1996 11:49:54 GMT",
+ <http://web.archive.org/web/20140901131113/https://www.ietf.org/> 
+    ; rel="memento last"
+    ; datetime="Mon, 01 Sep 2014 13:11:13 GMT"
+```
 
 ---
 class: middle
@@ -317,10 +359,9 @@ class: middle
 
 ---
 class: middle
-
 ## Exercise
 
-### Open the chrome browser! Have a look a your favourite sites with the Memento Plugin!
+### Open the chrome browser. Have a look a your favourite sites with the Memento Plugin!
 
 ---
 class: middle
