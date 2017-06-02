@@ -364,7 +364,6 @@ class: middle
 ### Open the chrome browser. Have a look a your favourite sites with the Memento Plugin!
 
 ---
-class: middle
 ## How does Memento work?
 
 ![Memento](./img/memento.png "Memento")
@@ -383,8 +382,8 @@ The `share` directory contains some YAML files. Read the catmandu documentation 
 class: middle
 
 ```terminal
-$ catmandu import YAML to MongoDB --database_name "elag" < share/data.yml
-$ catmandu import YAML to MongoDB --database_name "elag" < share/versions.yml
+$ catmandu import YAML to MongoDB --database_name 'elag' < share/data.yml
+$ catmandu import YAML to MongoDB --database_name 'elag' < share/versions.yml
 ```
 
 To check:
@@ -393,8 +392,39 @@ $ catmandu export MongoDB --database_name "elag" to YAML
 ```
 
 ---
-class: middle
+## Make a small web app
 
+We need some extra components:
+```terminal
+$ cpanm Plack::App::Catmandu::Bag
+$ cpanm Plack::Middleware::Memento
+$ cpanm Plack::Middleware::Memento::Handler::Catmandu::Bag
+```
+The web app is simply a file called app.psgi:
+```terminal
+use Catmandu;
+use Plack::Builder;
+use Plack::App::Catmandu::Bag;
+
+Catmandu->define_store('elag', MongoDB => (
+    database_name => 'elag',
+    bags => { data => { plugins => ['Versioning', 'Datestamps'] } }
+));
+
+my $app = Plack::App::Catmandu::Bag->new(store => 'elag');
+
+builder {¬
+  enable 'Memento', handler => 'Catmandu::Bag', store => 'elag';
+  $app->to_app;
+};
+```
+---
+## Make a small web app
+
+Run it with:
+```terminal
+$ plackup app.psgi
+```
 
 ---
 class: center middle
