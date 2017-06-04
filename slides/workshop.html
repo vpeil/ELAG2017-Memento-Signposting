@@ -339,16 +339,16 @@ Content-Length: 0
 Location: http://web.archive.org/web/20120616161314/http://www.ietf.org/
 Vary: Accept-Datetime
 Link: <http://www.ietf.org/> ;rel="original" ,
- <http://timetravel.mementoweb.org/timemap/link/1/http://www.ietf.org/> 
+ <http://timetravel.mementoweb.org/timemap/link/1/http://www.ietf.org/>
     ; rel="timemap"
     ; type="application/link-format",
- <http://web.archive.org/web/20120616161314/http://www.ietf.org/> 
+ <http://web.archive.org/web/20120616161314/http://www.ietf.org/>
     ; rel="memento"
     ; datetime="Sat, 16 Jun 2012 16:13:14 GMT",
- <http://web.archive.org/web/19961106114954/http://www.ietf.org/> 
+ <http://web.archive.org/web/19961106114954/http://www.ietf.org/>
     ; rel="memento first"
     ; datetime="Wed, 06 Nov 1996 11:49:54 GMT",
- <http://web.archive.org/web/20140901131113/https://www.ietf.org/> 
+ <http://web.archive.org/web/20140901131113/https://www.ietf.org/>
     ; rel="memento last"
     ; datetime="Mon, 01 Sep 2014 13:11:13 GMT"
 ```
@@ -388,7 +388,7 @@ $ catmandu import YAML to MongoDB --database_name 'elag' --bag data_version < sh
 
 To check:
 ```terminal
-$ catmandu export MongoDB --database_name "elag" to YAML
+$ catmandu export MongoDB --database_name 'elag' to YAML
 ```
 
 ---
@@ -413,7 +413,7 @@ Catmandu->define_store('elag', MongoDB => (
 
 my $app = Plack::App::Catmandu::Bag->new(store => 'elag');
 
-builder {¬
+builder {
   enable 'Memento', handler => 'Catmandu::Bag', store => 'elag';
   $app->to_app;
 };
@@ -427,9 +427,34 @@ $ plackup app.psgi
 ```
 
 ---
+## How to find *mementos* for a given list of URIs?
+
+Install another module
+
+```terminal
+$ cpanm Catmandu::Identifier
+```
+
+and read
+
+```terminal
+$ perldoc Catmandu::Fix::find_mementos
+```
+
+---
+## Solution: How to find mementos.
+
+```terminal
+catmandu convert CSV to CSV --fix 'find_mementos(url)' < urls.csv
+```
+
+---
+class: center middle
+# Signposting
+
+---
 class: center middle
 ![LibreCat](./img/signposting.png "Logo Signposting")
-## Signposting
 
 ---
 class: middle
@@ -513,14 +538,54 @@ type="application/zip",
 For more examples visit http://signposting.org/adopters/
 
 ---
-class: middle
-# Let's create our own Signposting service!
+## Make a small web app
+
+```terminal
+cpanm Plack::Middleware::Signposting
+```
+
+Let's copy our previous web app and change it a bit.
+
+```terminal
+$ cp app.psgi app2.psgi
+```
+
+We need to transform our data.
+
+```terminal
+...
+builder{
+  enable 'Signposting::JSON', fix => 'signposting.fix';
+  $app->to_app;
+};
+```
 
 ---
-class: middle
-## Follow Up (maybe for another talk)
+## Write a fix file *singposting.fix* to transform our data.
 
-### Robust Links
+We need the data in the following form:
+
+```json
+[
+  [uri, relation, type],
+  [uri, relation, type],
+  ...
+]
+```
+
+(type is optional)
+
+---
+## Start your signposting web app.
+
+```terminal
+$ plackup app2.psgi
+```
+
+---
+## Further developments
+
+github, zenodo, figshare
 
 ---
 class: middle
